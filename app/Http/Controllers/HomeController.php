@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kategori;
-use App\Models\Harga;
-use App\Models\Produk;
+use App\Models\Film;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -12,8 +11,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $produk = DB::table('produk')->get();
-        return view('index',['produk' => $produk]);
+        $film = DB::table('film')->get();
+        return view('index',['film' => $film]);
     }
 
     public function create()
@@ -32,34 +31,21 @@ class HomeController extends Controller
 
         ]);
 
-        Produk::create([
+        Film::crate([
             'id' => $request->id,
-            'nama' => $request->nama,
+            'judul_film' => $request->judul_film,
+            'tahun_rilis' => $request->tahun_rilis,
             'id_kategori' => $request->id_kategori,
-            'kuantitas' => $request->kuantitas
+            'produser' => $request->produser
 
         ]);
 
         DB::commit();
         }catch (\Throwable $th) {
-            
+
             //rollback jika terjadi kesalahan
             DB::rollback();
         }
-
-
-
-
-        // Harga::create([
-        //     'id_produk' => ->id,
-        //     'harga' => $request->harga,
-
-        // ]);
-
-
-        
-
-        // DB::commit();
 
         return redirect('/');
     }

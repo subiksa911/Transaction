@@ -1,64 +1,53 @@
-<!DOCTYPE html>
-<html>
+@extends('template')
+@section('title','Creaate Data Film')
+@section('container')
+<div class="card" style="margin-top: 20px;">
+    <div class="card-body">
 
-<head>
-    <title>Laravel 8 CRUD Application - bishrulhaq.com</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-</head>
-
-<body>
-
-    <div class="container">
-        <div class="card" style="margin-top: 20px;">
-            <div class="card-body">
-
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h2 class="text-center">Transaksi Sederhana</h2>
-                    </div>
-                    <div class="col-lg-12 text-center" style="margin-top:10px;margin-bottom: 10px;">
-                        <a class="btn btn-success " href="create"> Add Produk</a>
-                    </div>
-                </div>
-
-                @if($message = Session::get('success'))
-                    <div class="alert alert-success">
-                        {{ $message }}
-                    </div>
-                @endif
-
-
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Id Produk</th>
-                            <th>Nama</th>
-                            <th>Kategori</th>
-                            <th>Kuantitas</th>
-                            {{-- <th width="280px">More</th> --}}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($produk as $produk)
-                        <tr>
-                            
-                                <td>{{ $produk->id }}</td>
-                                <td>{{ $produk->nama }}</td>
-                                <td>{{ $produk->id_kategori }}</td>
-                                <td>{{ $produk->kuantitas }}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-
-                </table>
-
-                {{-- <div class="alert alert-alert">Start Adding to the Database.</div> --}}
-
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="text-left">TRANSACTION APPLICATION</h2>
+            </div>
+            <div class="col-lg-12 text-center" style="margin-top:10px;margin-bottom: 10px;">
+                <a class="btn btn-info float-left" href="create"> Add Film</a>
             </div>
         </div>
+
+        @if($message = Session::get('success'))
+        <div class="alert alert-success">
+            {{ $message }}
+        </div>
+        @endif
+
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Id Film</th>
+                    <th>Judul Film</th>
+                    <th>Tahun Rilis</th>
+                    <th>Kategori</th>
+                    <th>Produser</th>
+                    {{-- <th width="280px">More</th> --}}
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($film as $flm)
+                <tr>
+
+                    <td>{{ $flm->id }}</td>
+                    <td>{{ $flm->judul_film }}</td>
+                    <td>{{ $flm->tahun_rilis }}</td>
+                    <td>{{ $flm->id_kategori }}</td>
+                    <td>{{ $flm->produser }}</td>
+                </tr>
+                @endforeach
+            </tbody>
+
+        </table>
+
+        {{-- <div class="alert alert-alert">Start Adding to the Database.</div> --}}
+
     </div>
-
-</body>
-
-</html>
+</div>
+@endsection
